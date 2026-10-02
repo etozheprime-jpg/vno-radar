@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: vno-radar
+    runtime: docker
+    plan: starter        # free plan sleeps, which stops push notifications
+    healthCheckPath: /api/health
+    disk: { name: data, mountPath: /app/data, sizeGB: 1 }
+    envVars:
+      - key: AVIATION_API_KEY
+        sync: false
+      - key: FLIGHT_PROVIDER
+        value: aviationstack
+      - key: API_MONTHLY_BUDGET
+        value: "10000"
+      - key: VAPID_PUBLIC_KEY
+        sync: false
+      - key: VAPID_PRIVATE_KEY
+        sync: false
+      - key: VAPID_SUBJECT
+        value: mailto:you@example.com
